@@ -1,0 +1,24 @@
+spring:
+  profiles: default
+  datasource:
+    platform: postgres
+    #url: jdbc:postgresql://localhost:5432/postgres
+    url: jdbc:postgresql://service-registry:5432/postgres
+    username: postgres
+    password: Dell123$
+
+logging:
+  level:
+    root: INFO
+    com.dell.isg.smi: TRACE
+  file: /var/log/dell/virtualnetwork.log
+
+---
+
+spring:
+  profiles: linked
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://##SERVER##:##PORT##/postgres
+    username: postgres
+    password: ##PASSWORD##

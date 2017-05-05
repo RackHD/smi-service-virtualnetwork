@@ -1,0 +1,1288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="52feb78c-cc32-4028-b44f-52537726795e" activeEnvironment="Default" name="NetworkIPv4-REST" resourceRoot="${projectDir}" soapui-version="5.2.1" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config">
+	<con:settings/>
+	<con:interface xsi:type="con:RestService" id="bd93cc35-2803-4284-91ab-5afbb12197dc" wadlVersion="http://wadl.dev.java.net/2009/02" name="Authenticate" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+		<con:settings/>
+		<con:definitionCache type="TEXT" rootPart=""/>
+		<con:endpoints>
+			<con:endpoint>http://172.31.59.163</con:endpoint>
+		</con:endpoints>
+		<con:resource name="Authenticate" path="/v1.0/appliance/session/authenticate" id="0e126043-f8a7-4994-84e4-83b5736b08eb">
+			<con:settings/>
+			<con:parameters/>
+			<con:method name="Authenticate" id="e2e300a6-bad7-4cb8-9e82-36e65861a738" method="POST">
+				<con:settings/>
+				<con:parameters/>
+				<con:representation type="REQUEST">
+					<con:mediaType>application/json</con:mediaType>
+					<con:params/>
+				</con:representation>
+				<con:representation type="RESPONSE">
+					<con:mediaType xsi:nil="true"/>
+					<con:status>204</con:status>
+					<con:params/>
+					<con:element>data</con:element>
+				</con:representation>
+				<con:representation type="RESPONSE">
+					<con:mediaType xsi:nil="true"/>
+					<con:status>204</con:status>
+					<con:params/>
+					<con:element>data</con:element>
+				</con:representation>
+				<con:representation type="RESPONSE">
+					<con:mediaType xsi:nil="true"/>
+					<con:status>204</con:status>
+					<con:params/>
+					<con:element>data</con:element>
+				</con:representation>
+				<con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:request name="GoodCredentials" id="39e90850-8cb2-4a88-ab35-81ab026fee10" mediaType="application/json" postQueryString="false">
+					<con:settings>
+						<con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+					</con:settings>
+					<con:endpoint>${#Project#keycloakProtocol}://${#Project#KeycloakIP}:${#Project#keycloakPort}</con:endpoint>
+					<con:request>{"user": "root", "password": "linux"}</con:request>
+					<con:originalUri>https://127.0.0.1/v1.0/appliance/session/authenticate</con:originalUri><con:credentials>
+						<con:authType>No Authorization</con:authType>
+					</con:credentials>
+					<con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+					<con:jmsPropertyConfig/>
+					<con:parameters/>
+				</con:request>
+			</con:method>
+		</con:resource>
+	</con:interface>
+	<con:interface xsi:type="con:RestService" id="404cfe22-654e-4271-8818-43a3fc2c34f0" wadlVersion="http://wadl.dev.java.net/2009/02" name="IPV4AddressPools" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+		<con:settings/>
+
+		
+		<con:definitionCache type="TEXT" rootPart=""/><con:endpoints>
+			<con:endpoint>https://172.31.59.163</con:endpoint>
+		</con:endpoints>
+		<con:resource name="GetNetwork" path="/api/1.0/networks/{networkId}/" id="356e7e2f-32f6-4d66-bfc5-eb7d98158714">
+			<con:settings/>
+			<con:parameters>
+				<con:parameter>
+					<con:name>networkId</con:name>
+					<con:value>networkId</con:value>
+					<con:style>TEMPLATE</con:style>
+					<con:default>networkId</con:default>
+					<con:path xsi:nil="true"/>
+					<con:description xsi:nil="true"/>
+				</con:parameter>
+			</con:parameters>
+			<con:method name="NetworkId" id="09a87e45-c549-4a8b-8abe-2d4e861c5470" method="GET">
+				<con:settings/>
+				<con:parameters/>
+				<con:representation type="FAULT">
+					<con:mediaType>application/json</con:mediaType>
+					<con:status>404 401 400</con:status>
+					<con:params/>
+					<con:element xmlns:ns="https://172.31.59.156/v1.0/api/networks/10/">ns:Fault</con:element>
+				</con:representation>
+				<con:representation type="RESPONSE">
+					<con:mediaType xsi:nil="true"/>
+					<con:status>0</con:status>
+					<con:params/>
+					<con:element>data</con:element>
+				</con:representation>
+				<con:representation type="RESPONSE">
+					<con:mediaType>application/json</con:mediaType>
+					<con:status>200</con:status>
+					<con:params/>
+					<con:element xmlns:net="https://172.31.59.163/v1.0/api/networks">net:Response</con:element>
+				</con:representation>
+				<con:representation type="FAULT">
+					<con:mediaType xsi:nil="true"/>
+					<con:status>404</con:status>
+					<con:params/>
+					<con:element>data</con:element>
+				</con:representation>
+				<con:request name="Request 1" id="2ccba7c5-ba8f-4841-b0c1-f4a2497847f1" mediaType="application/json">
+					<con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings>
+					<con:endpoint>${#Project#protocol}://${#Project#ApplianceIP}:${#Project#servicePort}</con:endpoint>
+					<con:request/>
+					<con:credentials>
+						<con:authType>No Authorization</con:authType>
+					</con:credentials>
+					<con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+					<con:jmsPropertyConfig/>
+					<con:parameters>
+						<con:entry key="limit" value="{limit}"/>
+						<con:entry key="networkId" value="{networkId}"/>
+						<con:entry key="state" value="{state}"/>
+						<con:entry key="offset" value="{offset}"/>
+					</con:parameters>
+					<con:parameterOrder>
+						<con:entry>networkId</con:entry>
+						<con:entry>offset</con:entry>
+						<con:entry>limit</con:entry>
+						<con:entry>state</con:entry>
+					</con:parameterOrder>
+				</con:request>
+			</con:method>
+		</con:resource>
+		<con:resource name="CreateNetwork" path="/api/1.0/networks" id="f7eecfb8-57f2-44a0-8fc6-5e35b79505b9">
+			<con:settings/>
+			<con:parameters/>
+			<con:method name="Method 1" id="fb405e56-c082-429e-9113-f442991061cb" method="POST">
+				<con:settings/>
+				<con:parameters/>
+				<con:representation type="REQUEST">
+					<con:mediaType>application/json</con:mediaType>
+					<con:params/>
+				</con:representation>
+				<con:representation type="FAULT">
+					<con:mediaType>application/json</con:mediaType>
+					<con:status>500 401</con:status>
+					<con:params/>
+					<con:element xmlns:net="https://172.31.62.172/v1.0/api/networks">net:Fault</con:element>
+				</con:representation>
+				<con:representation type="RESPONSE">
+					<con:mediaType>application/json</con:mediaType>
+					<con:status>201 200</con:status>
+					<con:params/>
+				</con:representation>
+				<con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:request name="Request 1" id="7c64c636-1e75-4332-a217-e87fbcc78487" mediaType="application/json" postQueryString="false">
+					<con:settings>
+						<con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+					</con:settings>
+					<con:endpoint>${#Project#protocol}://${#Project#ApplianceIP}:${#Project#servicePort}</con:endpoint>
+					<con:request>{
+     "name": "Network1",
+     "description": "The First Network",
+     "type": "PUBLIC_LAN",
+     "vlanId": 90,
+     "static": true,
+     "staticIpv4NetworkConfiguration":
+     {
+          "gateway": "0.0.0.0",
+          "subnet": "255.255.255.0",
+          "dnsSuffix": "abc.com",
+          "primaryDNS": "172.162.0.1",
+          "secondaryDNS": "172.162.0.2",
+          "ipRange":
+          [
+               {
+                    "startingIp": "172.162.0.90",
+                    "endingIp": "172.162.0.92"
+               }
+          ]
+     }
+}</con:request>
+					<con:originalUri>https://100.64.23.53/networks</con:originalUri><con:credentials>
+						<con:authType>No Authorization</con:authType>
+					</con:credentials>
+					<con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+					<con:jmsPropertyConfig/>
+					<con:parameters/>
+				</con:request>
+			</con:method>
+		</con:resource>
+		<con:resource name="DeleteNetwork" path="/api/1.0/networks/{networkId}" id="4b0372ad-1c49-4129-8bf0-849f233a14ee">
+			<con:settings/>
+			<con:parameters>
+				<con:parameter>
+					<con:name>networkId</con:name>
+					<con:value>networkId</con:value>
+					<con:style>TEMPLATE</con:style>
+					<con:default>networkId</con:default>
+				</con:parameter>
+			</con:parameters>
+			<con:method name="Delete Method" id="0c5d534f-6800-48b3-85ac-1fddc77aaf6c" method="DELETE">
+				<con:settings/>
+				<con:parameters/>
+				<con:representation type="REQUEST">
+					<con:mediaType>application/json</con:mediaType>
+					<con:params/>
+				</con:representation>
+				<con:representation type="FAULT">
+					<con:mediaType xsi:nil="true"/>
+					<con:status>404</con:status>
+					<con:params/>
+					<con:element>data</con:element>
+				</con:representation>
+				<con:representation type="FAULT">
+					<con:mediaType xsi:nil="true"/>
+					<con:status>404</con:status>
+					<con:params/>
+					<con:element>data</con:element>
+				</con:representation>
+				<con:representation type="FAULT">
+					<con:mediaType xsi:nil="true"/>
+					<con:status>404</con:status>
+					<con:params/>
+					<con:element>data</con:element>
+				</con:representation>
+				<con:representation type="FAULT">
+					<con:mediaType xsi:nil="true"/>
+					<con:status>404</con:status>
+					<con:params/>
+					<con:element>data</con:element>
+				</con:representation>
+				<con:representation type="FAULT">
+					<con:mediaType xsi:nil="true"/>
+					<con:status>404</con:status>
+					<con:params/>
+					<con:element>data</con:element>
+				</con:representation>
+				<con:representation type="FAULT">
+					<con:mediaType xsi:nil="true"/>
+					<con:status>404</con:status>
+					<con:params/>
+					<con:element>data</con:element>
+				</con:representation>
+				<con:representation type="FAULT">
+					<con:mediaType xsi:nil="true"/>
+					<con:status>404</con:status>
+					<con:params/>
+					<con:element>data</con:element>
+				</con:representation>
+				<con:representation type="FAULT">
+					<con:mediaType xsi:nil="true"/>
+					<con:status>404</con:status>
+					<con:params/>
+					<con:element>data</con:element>
+				</con:representation>
+				<con:representation type="FAULT">
+					<con:mediaType xsi:nil="true"/>
+					<con:status>404</con:status>
+					<con:params/>
+					<con:element>data</con:element>
+				</con:representation>
+				<con:representation type="FAULT">
+					<con:mediaType xsi:nil="true"/>
+					<con:status>404</con:status>
+					<con:params/>
+					<con:element>data</con:element>
+				</con:representation>
+				<con:representation type="FAULT">
+					<con:mediaType xsi:nil="true"/>
+					<con:status>404</con:status>
+					<con:params/>
+					<con:element>data</con:element>
+				</con:representation>
+				<con:representation type="RESPONSE">
+					<con:mediaType xsi:nil="true"/>
+					<con:status>204</con:status>
+					<con:params/>
+					<con:element>data</con:element>
+				</con:representation>
+				<con:representation type="FAULT">
+					<con:mediaType>application/json</con:mediaType>
+					<con:status>404 400 401</con:status>
+					<con:params/>
+					<con:element xmlns:ns="https://172.31.62.172/">ns:Fault</con:element>
+				</con:representation>
+				<con:representation type="RESPONSE">
+					<con:mediaType xsi:nil="true"/>
+					<con:status>204</con:status>
+					<con:params/>
+					<con:element>data</con:element>
+				</con:representation>
+				<con:representation type="RESPONSE">
+					<con:mediaType xsi:nil="true"/>
+					<con:status>204</con:status>
+					<con:params/>
+					<con:element>data</con:element>
+				</con:representation>
+				<con:representation type="RESPONSE">
+					<con:mediaType xsi:nil="true"/>
+					<con:status>204</con:status>
+					<con:params/>
+					<con:element>data</con:element>
+				</con:representation>
+				<con:representation type="RESPONSE">
+					<con:mediaType xsi:nil="true"/>
+					<con:status>204</con:status>
+					<con:params/>
+					<con:element>data</con:element>
+				</con:representation>
+				<con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>204</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>204</con:status><con:params/><con:element>data</con:element></con:representation><con:request name="Request 1" id="76e35bc9-48a1-4666-967c-7a80e56e5754" mediaType="application/json" postQueryString="false">
+					<con:settings>
+						<con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+					</con:settings>
+					<con:endpoint>${#Project#protocol}://${#Project#ApplianceIP}:${#Project#servicePort}</con:endpoint>
+					<con:request/>
+					<con:originalUri>https://172.31.62.172/</con:originalUri>
+					<con:credentials>
+						<con:authType>No Authorization</con:authType>
+					</con:credentials>
+					<con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+					<con:jmsPropertyConfig/>
+					<con:parameters>
+						<entry key="networkId" value="https://${#Project#NetworkId}" xmlns="http://eviware.com/soapui/config"/>
+					</con:parameters>
+				</con:request>
+			</con:method>
+		</con:resource>
+		<con:resource name="GetIPV4AddressPoolEntries" path="/api/1.0/networks/{networkId}/ipAddressPools" id="03552a51-2b50-4bf4-8cec-77e89809ddbb">
+			<con:settings/>
+			<con:parameters>
+
+
+				<con:parameter>
+					<con:name>networkId</con:name>
+					<con:value/>
+					<con:style>TEMPLATE</con:style>
+					<con:default/>
+					<con:description xsi:nil="true"/>
+				</con:parameter>
+				<con:parameter>
+					<con:name>offset</con:name>
+					<con:value/>
+					<con:style>QUERY</con:style>
+					<con:default/>
+					<con:description xsi:nil="true"/>
+				</con:parameter>
+				<con:parameter>
+					<con:name>limit</con:name>
+					<con:value/>
+					<con:style>QUERY</con:style>
+					<con:default/>
+					<con:description xsi:nil="true"/>
+				</con:parameter>
+				<con:parameter>
+					<con:name>state</con:name>
+					<con:value/>
+					<con:style>QUERY</con:style>
+					<con:default/>
+					<con:description xsi:nil="true"/>
+				</con:parameter>
+			</con:parameters>
+			<con:method name="GetIPV4AddressPoolEntries Method" id="00f15f88-0466-46fe-b650-3600788694a4" method="GET">
+				<con:settings/>
+				<con:parameters/>
+				<con:representation type="FAULT">
+					<con:mediaType>application/json</con:mediaType>
+					<con:status>400 401</con:status>
+					<con:params/>
+					<con:element xmlns:net="https://172.31.59.163/v1.0/api/networks">net:Fault</con:element>
+				</con:representation>
+				<con:representation type="RESPONSE">
+					<con:mediaType>application/json</con:mediaType>
+					<con:status>200</con:status>
+					<con:params/>
+					<con:element xmlns:net="https://172.31.59.163/v1.0/api/networks">net:Response</con:element>
+				</con:representation>
+				<con:representation type="FAULT">
+					<con:mediaType xsi:nil="true"/>
+					<con:status>404</con:status>
+					<con:params/>
+					<con:element>data</con:element>
+				</con:representation>
+				<con:request name="Request 1" id="2ccba7c5-ba8f-4841-b0c1-f4a2497847f1" mediaType="application/json">
+					<con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings>
+					<con:endpoint>${#Project#protocol}://${#Project#ApplianceIP}:${#Project#servicePort}</con:endpoint>
+					<con:request/>
+					<con:credentials>
+						<con:authType>No Authorization</con:authType>
+					</con:credentials>
+					<con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+					<con:jmsPropertyConfig/>
+					<con:parameters>
+						<con:entry key="limit" value="{limit}"/>
+						<con:entry key="networkId" value="{networkId}"/>
+						<con:entry key="state" value="{state}"/>
+						<con:entry key="offset" value="{offset}"/>
+					</con:parameters>
+					<con:parameterOrder>
+						<con:entry>networkId</con:entry>
+						<con:entry>offset</con:entry>
+						<con:entry>limit</con:entry>
+						<con:entry>state</con:entry>
+					</con:parameterOrder>
+				</con:request>
+			</con:method>
+		</con:resource>
+		<con:resource name="ReserveIPV4AddressPoolAddresses" path="/api/1.0/networks/{networkId2}/ipAddressPools" id="03552a51-2b50-4bf4-8cec-77e89809ddbb">
+			<con:settings/>
+			<con:parameters>
+
+
+				<con:parameter>
+					<con:name>networkId2</con:name>
+					<con:value/>
+					<con:style>TEMPLATE</con:style>
+					<con:default/>
+					<con:description xsi:nil="true"/>
+				</con:parameter>
+			</con:parameters>
+			<con:method name="ReserveIPV4AddressPoolAddresses Method" id="00f15f88-0466-46fe-b650-3600788694a4" method="POST">
+				<con:settings/>
+				<con:parameters/>
+				<con:representation type="FAULT">
+					<con:mediaType>application/json</con:mediaType>
+					<con:status>400 401 500</con:status>
+					<con:params/>
+					<con:element xmlns:net="https://172.31.59.163/v1.0/api/networks">net:Fault</con:element>
+				</con:representation>
+				<con:representation type="RESPONSE">
+					<con:mediaType>application/json</con:mediaType>
+					<con:status>200 201</con:status>
+					<con:params/>
+					<con:element xmlns:net="https://172.31.59.163/v1.0/api/networks">net:Response</con:element>
+				</con:representation>
+				<con:representation type="FAULT">
+					<con:mediaType xsi:nil="true"/>
+					<con:status>404</con:status>
+					<con:params/>
+					<con:element>data</con:element>
+				</con:representation>
+				<con:representation type="REQUEST">
+					<con:mediaType>application/json</con:mediaType>
+					<con:params/>
+				</con:representation>
+				<con:representation type="RESPONSE">
+					<con:mediaType xsi:nil="true"/>
+					<con:status>204</con:status>
+					<con:params/>
+					<con:element>data</con:element>
+				</con:representation>
+				<con:representation type="FAULT"><con:mediaType>application/json;charset=UTF-8</con:mediaType><con:status>400 500</con:status><con:params/><con:element xmlns:ipad="http://100.64.23.53/networks/%7BnetworkId%7D/ipAddressPools">ipad:Fault</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>0</con:status><con:params/><con:element>data</con:element></con:representation><con:request name="Request 1" id="2ccba7c5-ba8f-4841-b0c1-f4a2497847f1" mediaType="application/json" postQueryString="false">
+					<con:settings>
+						<con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+					</con:settings>
+					<con:endpoint>${#Project#protocol}://${#Project#ApplianceIP}:${#Project#servicePort}</con:endpoint>
+					<con:request>{
+	"usageId": "foo",
+	"quantityRequested": 1
+}
+</con:request>
+					<con:originalUri>http://100.64.23.53/networks/%7BnetworkId%7D/ipAddressPools</con:originalUri><con:credentials>
+						<con:authType>No Authorization</con:authType>
+					</con:credentials>
+					<con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+					<con:jmsPropertyConfig/>
+					<con:parameters><entry key="networkId2" value="2" xmlns="http://eviware.com/soapui/config"/></con:parameters>
+					<con:parameterOrder>
+						<con:entry>networkId2</con:entry>
+					</con:parameterOrder>
+				</con:request>
+			</con:method>
+		</con:resource>
+		<con:resource name="AssignIPV4AddressPoolAddresses" path="/api/1.0/networks/{networkId}/ipAddressPools" id="03552a51-2b50-4bf4-8cec-77e89809ddbb">
+			<con:settings/>
+			<con:parameters>
+
+
+				<con:parameter>
+					<con:name>networkId</con:name>
+					<con:value/>
+					<con:style>TEMPLATE</con:style>
+					<con:default/>
+					<con:description xsi:nil="true"/>
+				</con:parameter>
+			</con:parameters>
+			<con:method name="AssignIPV4AddressPoolAddresses Method" id="00f15f88-0466-46fe-b650-3600788694a4" method="PUT">
+				<con:settings/>
+				<con:parameters/>
+				<con:representation type="FAULT">
+					<con:mediaType>application/json</con:mediaType>
+					<con:status>400 401 500</con:status>
+					<con:params/>
+					<con:element xmlns:net="https://172.31.59.163/v1.0/api/networks">net:Fault</con:element>
+				</con:representation>
+				<con:representation type="RESPONSE">
+					<con:mediaType>application/json</con:mediaType>
+					<con:status>200 201</con:status>
+					<con:params/>
+					<con:element xmlns:net="https://172.31.59.163/v1.0/api/networks">net:Response</con:element>
+				</con:representation>
+				<con:representation type="FAULT">
+					<con:mediaType xsi:nil="true"/>
+					<con:status>404</con:status>
+					<con:params/>
+					<con:element>data</con:element>
+				</con:representation>
+				<con:representation type="REQUEST">
+					<con:mediaType>application/json</con:mediaType>
+					<con:params/>
+				</con:representation>
+				<con:request name="Request 1" id="2ccba7c5-ba8f-4841-b0c1-f4a2497847f1" mediaType="application/json" postQueryString="false">
+					<con:settings>
+						<con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+					</con:settings>
+					<con:endpoint>${#Project#protocol}://${#Project#ApplianceIP}:${#Project#servicePort}</con:endpoint>
+					<con:request/>
+					<con:credentials>
+						<con:authType>No Authorization</con:authType>
+					</con:credentials>
+					<con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+					<con:jmsPropertyConfig/>
+					<con:parameters>
+						<entry key="networkId" value="{networkId}" xmlns="http://eviware.com/soapui/config"/>
+					</con:parameters>
+					<con:parameterOrder>
+						<con:entry>networkId</con:entry>
+					</con:parameterOrder>
+				</con:request>
+			</con:method>
+		</con:resource>
+		<con:resource name="ReleaseSpecificIPV4Addresses" path="/api/1.0/networks/{networkId}/ipAddressPools/{ipAddress}" id="03552a51-2b50-4bf4-8cec-77e89809ddbb">
+			<con:settings/>
+			<con:parameters>
+
+
+				<con:parameter>
+					<con:name>networkId</con:name>
+					<con:value/>
+					<con:style>TEMPLATE</con:style>
+					<con:default/>
+					<con:description xsi:nil="true"/>
+				</con:parameter>
+				<con:parameter>
+					<con:name>ipAddress</con:name>
+					<con:value/>
+					<con:style>TEMPLATE</con:style>
+					<con:default/>
+				</con:parameter>
+			</con:parameters>
+			<con:method name="ReleaseSpecificIPV4Addresses Method" id="00f15f88-0466-46fe-b650-3600788694a4" method="DELETE">
+				<con:settings/>
+				<con:parameters/>
+				<con:representation type="FAULT">
+					<con:mediaType>application/json</con:mediaType>
+					<con:status>400 401 500</con:status>
+					<con:params/>
+					<con:element xmlns:net="https://172.31.59.163/v1.0/api/networks">net:Fault</con:element>
+				</con:representation>
+				<con:representation type="RESPONSE">
+					<con:mediaType>application/json</con:mediaType>
+					<con:status>200 201</con:status>
+					<con:params/>
+					<con:element xmlns:net="https://172.31.59.163/v1.0/api/networks">net:Response</con:element>
+				</con:representation>
+				<con:representation type="FAULT">
+					<con:mediaType xsi:nil="true"/>
+					<con:status>404</con:status>
+					<con:params/>
+					<con:element>data</con:element>
+				</con:representation>
+				<con:representation type="REQUEST">
+					<con:mediaType>application/json</con:mediaType>
+					<con:params/>
+				</con:representation>
+				<con:representation type="RESPONSE">
+					<con:mediaType xsi:nil="true"/>
+					<con:status>204</con:status>
+					<con:params/>
+					<con:element>data</con:element>
+				</con:representation>
+				<con:request name="Request 1" id="2ccba7c5-ba8f-4841-b0c1-f4a2497847f1" mediaType="application/json" postQueryString="false">
+					<con:settings>
+						<con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+					</con:settings>
+					<con:endpoint>${#Project#protocol}://${#Project#ApplianceIP}:${#Project#servicePort}</con:endpoint>
+					<con:request/>
+					<con:credentials>
+						<con:authType>No Authorization</con:authType>
+					</con:credentials>
+					<con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+					<con:jmsPropertyConfig/>
+					<con:parameters>
+						<con:entry key="networkId" value="{networkId}"/>
+						<con:entry key="ipAddress" value="{ipAddress}"/>
+					</con:parameters>
+					<con:parameterOrder>
+						<con:entry>networkId</con:entry>
+						<con:entry>ipAddress</con:entry>
+					</con:parameterOrder>
+				</con:request>
+			</con:method>
+		</con:resource>
+		<con:resource name="ReleaseAllIPV4Addresses" path="/api/1.0/networks/{networkId}/ipAddressPools" id="03552a51-2b50-4bf4-8cec-77e89809ddbb">
+			<con:settings/>
+			<con:parameters>
+
+
+				<con:parameter>
+					<con:name>networkId</con:name>
+					<con:value/>
+					<con:style>TEMPLATE</con:style>
+					<con:default/>
+					<con:description xsi:nil="true"/>
+				</con:parameter>
+				<con:parameter>
+					<con:name>usageId</con:name>
+					<con:value/>
+					<con:style>QUERY</con:style>
+					<con:default/>
+					<con:description xsi:nil="true"/>
+				</con:parameter>
+			</con:parameters>
+			<con:method name="ReleaseAllIPV4Addresses Method" id="00f15f88-0466-46fe-b650-3600788694a4" method="DELETE">
+				<con:settings/>
+				<con:parameters/>
+				<con:representation type="FAULT">
+					<con:mediaType>application/json</con:mediaType>
+					<con:status>400 401 500</con:status>
+					<con:params/>
+					<con:element xmlns:net="https://172.31.59.163/v1.0/api/networks">net:Fault</con:element>
+				</con:representation>
+				<con:representation type="RESPONSE">
+					<con:mediaType>application/json</con:mediaType>
+					<con:status>200 201</con:status>
+					<con:params/>
+					<con:element xmlns:net="https://172.31.59.163/v1.0/api/networks">net:Response</con:element>
+				</con:representation>
+				<con:representation type="FAULT">
+					<con:mediaType xsi:nil="true"/>
+					<con:status>404</con:status>
+					<con:params/>
+					<con:element>data</con:element>
+				</con:representation>
+				<con:representation type="REQUEST">
+					<con:mediaType>application/json</con:mediaType>
+					<con:params/>
+				</con:representation>
+				<con:representation type="RESPONSE">
+					<con:mediaType xsi:nil="true"/>
+					<con:status>204</con:status>
+					<con:params/>
+					<con:element>data</con:element>
+				</con:representation>
+				<con:request name="Request 1" id="2ccba7c5-ba8f-4841-b0c1-f4a2497847f1" mediaType="application/json" postQueryString="false">
+					<con:settings>
+						<con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+					</con:settings>
+					<con:endpoint>${#Project#protocol}://${#Project#ApplianceIP}:${#Project#servicePort}</con:endpoint>
+					<con:request/>
+					<con:credentials>
+						<con:authType>No Authorization</con:authType>
+					</con:credentials>
+					<con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+					<con:jmsPropertyConfig/>
+					<con:parameters>
+						<con:entry key="networkId" value="{networkId}"/>
+						<con:entry key="usageId" value="{usageId}"/>
+					</con:parameters>
+					<con:parameterOrder>
+						<con:entry>networkId</con:entry>
+						<con:entry>usageId</con:entry>
+					</con:parameterOrder>
+				</con:request>
+			</con:method>
+		</con:resource>
+	</con:interface>
+	<con:testSuite id="8b2bc269-5c64-42fc-b04b-e606982f952e" name="IPV4AddressPoolsServices">
+		<con:settings/>
+		<con:runType>SEQUENTIAL</con:runType>
+		<con:testCase id="084a02ad-0f8c-4071-8b89-81d7add4c3d5" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="IPV4AddressPoolsAPIs" searchProperties="true">
+			<con:settings/>
+			<con:testStep type="restrequest" name="authenticate" id="350ec17b-c7ed-4b00-a114-dfd8b67d904c" disabled="true">
+				<con:settings/>
+				<con:config service="Authenticate" resourcePath="/v1.0/appliance/session/authenticate" methodName="Authenticate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+					<con:restRequest name="authenticate" id="39e90850-8cb2-4a88-ab35-81ab026fee10" mediaType="application/json" postQueryString="false">
+						<con:settings>
+							<con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+						</con:settings>
+						<con:endpoint>https://${#Project#ApplianceIP}</con:endpoint>
+						<con:request>{"user": "root", "password": "linux"}</con:request>
+						<con:originalUri>https://172.31.59.163/v1.0/appliance/session/authenticate
+						</con:originalUri>
+						<con:assertion type="Valid HTTP Status Codes" id="fc61b3b4-a487-45b6-8e70-05884862888f" name="Valid HTTP Status Codes">
+							<con:configuration>
+								<codes>204</codes>
+							</con:configuration>
+						</con:assertion>
+						<con:credentials>
+							<con:authType>No Authorization</con:authType>
+						</con:credentials>
+						<con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+						<con:jmsPropertyConfig/>
+						<con:parameters/>
+					</con:restRequest>
+				</con:config>
+			</con:testStep>
+			<con:testStep type="groovy" name="GetJSessionId" id="6501c5c4-ca1f-4abe-a4bc-5b776352a01d" disabled="true">
+				<con:settings/>
+				<con:config>
+					<script>def header =
+						testRunner.testCase.getTestStepByName("authenticate").httpRequest.response.responseHeaders["JSESSIONID"][0]
+						testRunner.testCase.setPropertyValue("JSessionId",
+						header.toString())
+						// Shiro need some time to replicate SESSION data frmo applicace.war
+						to api.war
+						// Use 1000ms for now, change it if necessary
+						sleep(1000)</script>
+				</con:config>
+			</con:testStep>
+
+
+
+
+			<con:testStep type="restrequest" name="getIPV4AddressPoolEntries" id="c5e42621-51b9-4315-ae3a-0caa246e7bbf">
+				<con:settings/>
+				<con:config service="IPV4AddressPools" resourcePath="/api/1.0/networks/{networkId}/ipAddressPools" methodName="GetIPV4AddressPoolEntries Method" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+					<con:restRequest name="getIPV4AddressPoolEntries" id="7c64c636-1e75-4332-a217-e87fbcc78487" mediaType="application/json" postQueryString="false">
+						<con:settings>
+							<con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="JSESSIONID" value="${#TestCase#JSessionId}" xmlns="http://eviware.com/soapui/config"/></con:setting>
+						</con:settings>
+						<con:endpoint>${#Project#protocol}://${#Project#ApplianceIP}:${#Project#servicePort}</con:endpoint>
+						<con:request/>
+						<con:originalUri>https://172.31.59.163/v1.0/api/networks
+						</con:originalUri>
+						<con:assertion type="Valid HTTP Status Codes" id="536e06d9-c9b1-4fff-9c80-373ce9513d3a" name="Valid HTTP Status Codes">
+							<con:configuration>
+								<codes>200</codes>
+							</con:configuration>
+						</con:assertion>
+						<con:credentials>
+							<con:authType>No Authorization</con:authType>
+						</con:credentials>
+						<con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+						<con:jmsPropertyConfig/>
+						<con:parameters>
+							<con:entry key="limit" value="${#Project#limit}"/>
+							<con:entry key="networkId" value="${#Project#networkId}"/>
+							<con:entry key="state" value="${#Project#state}"/>
+							<con:entry key="offset" value="${#Project#offset}"/>
+						</con:parameters>
+						<con:parameterOrder>
+							<con:entry>networkId</con:entry>
+							<con:entry>offset</con:entry>
+							<con:entry>limit</con:entry>
+							<con:entry>state</con:entry>
+						</con:parameterOrder>
+					</con:restRequest>
+				</con:config>
+			</con:testStep>
+
+
+
+			<con:testStep type="restrequest" name="reserveIPV4AddressPoolAddresses" id="24b2445e-710b-42d9-82b6-60d2e731b383">
+				<con:settings/>
+				<con:config service="IPV4AddressPools" resourcePath="/api/1.0/networks/{networkId2}/ipAddressPools" methodName="ReserveIPV4AddressPoolAddresses Method" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+					<con:restRequest name="reserveIPV4AddressPoolAddresses" id="7c64c636-1e75-4332-a217-e87fbcc78487" mediaType="application/json" postQueryString="false">
+						<con:settings>
+							<con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="JSESSIONID" value="${#TestCase#JSessionId}"
+								xmlns="http://eviware.com/soapui/config"/></con:setting>
+						</con:settings>
+						<con:endpoint>${#Project#protocol}://${#Project#ApplianceIP}:${#Project#servicePort}</con:endpoint>
+						<con:request>
+							{
+
+							"usageId":123,
+
+							"quantityRequested":3
+
+							}
+						</con:request>
+						<con:originalUri>https://172.31.59.163/v1.0/api/networks
+						</con:originalUri>
+						<con:assertion type="Valid HTTP Status Codes" id="536e06d9-c9b1-4fff-9c80-373ce9513d3a" name="Valid HTTP Status Codes">
+							<con:configuration>
+								<codes>201</codes>
+							</con:configuration>
+						</con:assertion>
+						<con:credentials>
+							<con:authType>No Authorization</con:authType>
+						</con:credentials>
+						<con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+						<con:jmsPropertyConfig/>
+						<con:parameters>
+  <con:entry key="limit" value="${#Project#limit}"/>
+  <con:entry key="state" value="${#Project#state}"/>
+  <con:entry key="networkId2" value="${#Project#networkId}"/>
+  <con:entry key="offset" value="${#Project#offset}"/>
+</con:parameters>
+						<con:parameterOrder><con:entry>networkId2</con:entry></con:parameterOrder>
+					</con:restRequest>
+				</con:config>
+			</con:testStep>
+			<con:testStep type="restrequest" name="assignIPV4AddressPoolAddresses" id="1a63af1a-b76e-406d-88ca-b246c0ab90ec">
+				<con:settings/>
+				<con:config service="IPV4AddressPools" resourcePath="/api/1.0/networks/{networkId}/ipAddressPools" methodName="AssignIPV4AddressPoolAddresses Method" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+					<con:restRequest name="assignIPV4AddressPoolAddresses" id="7c64c636-1e75-4332-a217-e87fbcc78487" mediaType="application/json" postQueryString="false">
+						<con:settings>
+							<con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="JSESSIONID" value="${#TestCase#JSessionId}"
+								xmlns="http://eviware.com/soapui/config"/></con:setting>
+						</con:settings>
+						<con:endpoint>${#Project#protocol}://${#Project#ApplianceIP}:${#Project#servicePort}</con:endpoint>
+						<con:request>
+							{
+
+							"usageId":123,
+
+							"ipAddresses":
+
+							[
+
+							"172.31.19.3",
+
+							"172.31.19.4",
+
+							"172.31.19.9"
+
+							]
+
+							}
+						</con:request>
+						<con:originalUri>https://172.31.59.163/v1.0/api/networks
+						</con:originalUri>
+						<con:assertion type="Valid HTTP Status Codes" id="536e06d9-c9b1-4fff-9c80-373ce9513d3a" name="Valid HTTP Status Codes">
+							<con:configuration>
+								<codes>204</codes>
+							</con:configuration>
+						</con:assertion>
+						<con:credentials>
+							<con:authType>No Authorization</con:authType>
+						</con:credentials>
+						<con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+						<con:jmsPropertyConfig/>
+						<con:parameters>
+							<con:entry key="limit" value="${#Project#limit}"/>
+							<con:entry key="networkId" value="${#Project#networkId}"/>
+							<con:entry key="state" value="${#Project#state}"/>
+							<con:entry key="offset" value="${#Project#offset}"/>
+						</con:parameters>
+						<con:parameterOrder>
+							<con:entry>networkId</con:entry>
+							<con:entry>offset</con:entry>
+							<con:entry>limit</con:entry>
+							<con:entry>state</con:entry>
+						</con:parameterOrder>
+					</con:restRequest>
+				</con:config>
+			</con:testStep>
+			<con:testStep type="restrequest" name="releaseSpecificIPV4Addresses" id="5d8f8967-819f-476a-be52-c6269eb8ef58">
+				<con:settings/>
+				<con:config service="IPV4AddressPools" resourcePath="/api/1.0/networks/{networkId}/ipAddressPools/{ipAddress}" methodName="ReleaseSpecificIPV4Addresses Method" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+					<con:restRequest name="releaseSpecificIPV4Addresses" id="7c64c636-1e75-4332-a217-e87fbcc78487" mediaType="application/json" postQueryString="false">
+						<con:settings>
+							<con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="JSESSIONID" value="${#TestCase#JSessionId}"
+								xmlns="http://eviware.com/soapui/config"/></con:setting>
+						</con:settings>
+						<con:endpoint>${#Project#protocol}://${#Project#ApplianceIP}:${#Project#servicePort}</con:endpoint>
+						<con:request/>
+						<con:originalUri>https://172.31.59.163/v1.0/api/networks
+						</con:originalUri>
+						<con:assertion type="Valid HTTP Status Codes" id="536e06d9-c9b1-4fff-9c80-373ce9513d3a" name="Valid HTTP Status Codes">
+							<con:configuration>
+								<codes>204</codes>
+							</con:configuration>
+						</con:assertion>
+						<con:credentials>
+							<con:authType>No Authorization</con:authType>
+						</con:credentials>
+						<con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+						<con:jmsPropertyConfig/>
+						<con:parameters>
+							<con:entry key="limit" value="${#Project#limit}"/>
+							<con:entry key="networkId" value="${#Project#networkId}"/>
+							<con:entry key="state" value="${#Project#state}"/>
+							<con:entry key="offset" value="${#Project#offset}"/>
+							<con:entry key="ipAddress" value="${#Project#ipAddress}"/>
+						</con:parameters>
+						<con:parameterOrder>
+							<con:entry>networkId</con:entry>
+							<con:entry>offset</con:entry>
+							<con:entry>limit</con:entry>
+							<con:entry>state</con:entry>
+						</con:parameterOrder>
+					</con:restRequest>
+				</con:config>
+			</con:testStep>
+			<con:testStep type="restrequest" name="releaseAllIPV4Addresses" id="45422b95-80ef-4550-bf7e-d0e17d00cc1e">
+				<con:settings/>
+				<con:config service="IPV4AddressPools" resourcePath="/api/1.0/networks/{networkId}/ipAddressPools" methodName="ReleaseAllIPV4Addresses Method" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+					<con:restRequest name="releaseAllIPV4Addresses" id="7c64c636-1e75-4332-a217-e87fbcc78487" mediaType="application/json" postQueryString="false">
+						<con:settings>
+							<con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="JSESSIONID" value="${#TestCase#JSessionId}"
+								xmlns="http://eviware.com/soapui/config"/></con:setting>
+						</con:settings>
+						<con:endpoint>${#Project#protocol}://${#Project#ApplianceIP}:${#Project#servicePort}</con:endpoint>
+						<con:request/>
+						<con:originalUri>https://172.31.59.163/v1.0/api/networks
+						</con:originalUri>
+						<con:assertion type="Valid HTTP Status Codes" id="536e06d9-c9b1-4fff-9c80-373ce9513d3a" name="Valid HTTP Status Codes">
+							<con:configuration>
+								<codes>204</codes>
+							</con:configuration>
+						</con:assertion>
+						<con:credentials>
+							<con:authType>No Authorization</con:authType>
+						</con:credentials>
+						<con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+						<con:jmsPropertyConfig/>
+						<con:parameters>
+							<con:entry key="limit" value="${#Project#limit}"/>
+							<con:entry key="networkId" value="${#Project#networkId}"/>
+							<con:entry key="state" value="${#Project#state}"/>
+							<con:entry key="offset" value="${#Project#offset}"/>
+							<con:entry key="usageId" value="${#Project#usageId}"/>
+							<con:entry key="ipAddress" value="${#Project#ipAddress}"/>
+						</con:parameters>
+						<con:parameterOrder>
+							<con:entry>networkId</con:entry>
+							<con:entry>offset</con:entry>
+							<con:entry>limit</con:entry>
+							<con:entry>state</con:entry>
+						</con:parameterOrder>
+					</con:restRequest>
+				</con:config>
+			</con:testStep>
+			
+			
+			<con:properties>
+				<con:property>
+					<con:name>JSessionId</con:name>
+					<con:value>098bb3eb-7906-496d-81d4-459f335c9b44</con:value>
+				</con:property>
+			</con:properties>
+		</con:testCase>
+		<con:testCase id="959bd64b-97d3-4d83-92ec-c6267dbaca47" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="assignIPv4AddressPoolAddresses" searchProperties="true"><con:settings/><con:testStep type="restrequest" name="authenticate" id="472d72f1-d3e6-4e6c-ade3-09c9269ce495" disabled="true">
+				<con:settings/>
+				<con:config service="Authenticate" resourcePath="/v1.0/appliance/session/authenticate" methodName="Authenticate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+					<con:restRequest name="authenticate" id="39e90850-8cb2-4a88-ab35-81ab026fee10" mediaType="application/json" postQueryString="false">
+						<con:settings>
+							<con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+						</con:settings>
+						<con:endpoint>https://${#Project#ApplianceIP}</con:endpoint>
+						<con:request>{"user": "root", "password": "linux"}</con:request>
+						<con:originalUri>https://172.31.59.156/v1.0/appliance/session/authenticate
+						</con:originalUri>
+						<con:assertion type="Valid HTTP Status Codes" id="fc61b3b4-a487-45b6-8e70-05884862888f" name="Valid HTTP Status Codes">
+							<con:configuration>
+								<codes>204</codes>
+							</con:configuration>
+						</con:assertion>
+						<con:credentials>
+							<con:authType>No Authorization</con:authType>
+						</con:credentials>
+						<con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+						<con:jmsPropertyConfig/>
+						<con:parameters/>
+					</con:restRequest>
+				</con:config>
+			</con:testStep><con:testStep type="groovy" name="GetJSessionId" id="14f24225-a548-40ac-a307-c3197ad78b22" disabled="true">
+				<con:settings/>
+				<con:config><script>def header = testRunner.testCase.getTestStepByName("authenticate").httpRequest.response.responseHeaders["JSESSIONID"][0]
+testRunner.testCase.setPropertyValue("JSessionId", header.toString())
+// Shiro need some time to replicate SESSION data frmo applicace.war to api.war
+// Use 1000ms for now, change it if necessary
+sleep(1000)</script></con:config>
+			</con:testStep><con:testStep type="restrequest" name="getAllNetworks" id="4e59da9f-5ccf-46af-ae0b-1c830b3c9794">
+				<con:settings/>
+				<con:config service="Authenticate" resourcePath="/v1.0/appliance/session/authenticate" methodName="Authenticate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+					<con:restRequest name="getAllNetworks" id="7c64c636-1e75-4332-a217-e87fbcc78487" mediaType="application/json" postQueryString="false">
+						<con:settings>
+							<con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="JSESSIONID" value="${#TestCase#JSessionId}" xmlns="http://eviware.com/soapui/config"/></con:setting>
+						</con:settings>
+						<con:endpoint>${#Project#protocol}://${#Project#ApplianceIP}:${#Project#servicePort}</con:endpoint>
+						<con:request/>
+						<con:originalUri>https://172.31.62.172/v1.0/api/networks
+						</con:originalUri>
+						<con:assertion type="Valid HTTP Status Codes" id="536e06d9-c9b1-4fff-9c80-373ce9513d3a" name="Valid HTTP Status Codes">
+							<con:configuration>
+								<codes>200</codes>
+							</con:configuration>
+						</con:assertion>
+						<con:credentials>
+							<con:authType>No Authorization</con:authType>
+						</con:credentials>
+						<con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+						<con:jmsPropertyConfig/>
+						<con:parameters>
+							<con:entry key="limit" value="10"/>
+							<con:entry key="offset" value="0"/>
+						</con:parameters>
+					</con:restRequest>
+				</con:config>
+			</con:testStep><con:testStep type="groovy" name="GetNetworkId" id="359b0c43-fd9b-4743-b882-7066cffcd20f"><con:settings/><con:config><script>//
+// This script will harvest the first network ID obtained by calling the
+// getAllNetworks test step.
+//
+// Access this network ID using: ${#TestCase#networkId} in the request field.
+//
+import groovy.json.JsonSlurper
+
+def rawResponse = testRunner.testCase.getTestStepByName("getAllNetworks").getPropertyValue("response")
+slurpResponse = new JsonSlurper().parseText(rawResponse)
+
+testRunner.testCase.setPropertyValue("networkId", slurpResponse.data.id[0].toString())
+//log.info(slurpResponse.data[0])
+
+</script></con:config></con:testStep><con:testStep type="groovy" name="readAssignIPv4AddressPoolEntriesFile" id="c330566a-8bea-4278-b716-4da012cc338e"><con:settings/><con:config><script>//
+// This script will harvest the first network ID obtained by calling the
+// getAllNetworks test step.
+//
+// Access this network ID using: ${#TestCase#networkId} in the request field.
+//
+def groovyUtils = new com.eviware.soapui.support.GroovyUtils(context)
+
+def csvFilePath = "P:\\ICEE\\Temp\\Bruce\\assignIPv4AddressPoolAddresses.csv"
+context.fileReader = new BufferedReader(new FileReader(csvFilePath))
+
+firstLine = context.fileReader.readLine()
+
+String[] propData = firstLine.split(",")
+
+testRunner.testCase.setPropertyValue("usageId", propData[0])
+
+log.info(propData[0])
+
+</script></con:config></con:testStep><con:testStep type="restrequest" name="assignIPv4AddressPoolAddresses" id="468c4a4e-526a-480f-a2e6-fef4791ec823">
+				<con:settings/>
+				<con:config service="Authenticate" resourcePath="/v1.0/appliance/session/authenticate" methodName="Authenticate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+					<con:restRequest name="assignIPv4AddressPoolAddresses" id="83fe57c0-1bad-45be-ae91-430707ec4473" mediaType="application/json" postQueryString="false">
+						<con:settings>
+							<con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="JSESSIONID" value="${#TestCase#JSessionId}" xmlns="http://eviware.com/soapui/config"/></con:setting>
+						<con:setting id="RecordRequestRepresentations">false</con:setting></con:settings>
+						<con:endpoint>${#Project#protocol}://${#Project#ApplianceIP}:${#Project#servicePort}</con:endpoint>
+						<con:request>{
+	"usageId": ${#TestCase#usageId}",
+	"ipAddresses":
+	[
+	     "172.31.19.3",
+	     "172.31.19.4",
+	     "172.31.19.9"
+	]
+}
+</con:request>
+						<con:originalUri>https://172.31.62.172/v1.0/api/networks/https%3A%2F%2F2/ipv4Ranges/https%3A%2F%2F2
+						</con:originalUri>
+						<con:assertion type="Valid HTTP Status Codes" id="9dcd46af-d776-4422-aa0c-761ad6096b4f" name="Valid HTTP Status Codes">
+							<con:configuration><codes>204
+								</codes></con:configuration>
+						</con:assertion>
+						<con:credentials>
+							<con:authType>No Authorization</con:authType>
+						</con:credentials>
+						<con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+						<con:jmsPropertyConfig/>
+						<con:parameters>
+  <con:entry key="rangeId" value="${#Project#RangeId}"/>
+  <con:entry key="networkId" value="${#Project#NetworkId}"/>
+  <con:entry key="usage" value="${#Project#usage}"/>
+  <con:entry key="ipAddresses" value="${#Project#ipAddresses}"/>
+  <con:entry key="usageId" value="${#Project#UsageId}"/>
+</con:parameters>
+					</con:restRequest>
+				</con:config>
+			</con:testStep><con:properties><con:property><con:name>JSessionId</con:name><con:value>23524bd3-3b85-4982-8620-10c15b00b606</con:value></con:property><con:property><con:name>networkId</con:name><con:value>null</con:value></con:property><con:property><con:name>firstNetworkInfo</con:name><con:value>none</con:value></con:property><con:property><con:name>usageId</con:name><con:value>123</con:value></con:property></con:properties></con:testCase><con:testCase id="7f11de0d-e081-4874-8966-be978159e154" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getAllIPv4AddressPoolEntries" searchProperties="true"><con:settings/><con:testStep type="restrequest" name="authenticate" id="16718f5e-1ef7-4e06-a66c-b6859874ffba" disabled="true">
+				<con:settings/>
+				<con:config service="Authenticate" resourcePath="/v1.0/appliance/session/authenticate" methodName="Authenticate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+					<con:restRequest name="authenticate" id="39e90850-8cb2-4a88-ab35-81ab026fee10" mediaType="application/json" postQueryString="false">
+						<con:settings>
+							<con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+						</con:settings>
+						<con:endpoint>https://${#Project#ApplianceIP}</con:endpoint>
+						<con:request>{"user": "root", "password": "linux"}</con:request>
+						<con:originalUri>https://172.31.59.156/v1.0/appliance/session/authenticate
+						</con:originalUri>
+						<con:assertion type="Valid HTTP Status Codes" id="fc61b3b4-a487-45b6-8e70-05884862888f" name="Valid HTTP Status Codes">
+							<con:configuration>
+								<codes>204</codes>
+							</con:configuration>
+						</con:assertion>
+						<con:credentials>
+							<con:authType>No Authorization</con:authType>
+						</con:credentials>
+						<con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+						<con:jmsPropertyConfig/>
+						<con:parameters/>
+					</con:restRequest>
+				</con:config>
+			</con:testStep><con:testStep type="groovy" name="GetJSessionId" id="dabe39f2-73fb-4588-868b-eb18efd87275" disabled="true">
+				<con:settings/>
+				<con:config><script>def header = testRunner.testCase.getTestStepByName("authenticate").httpRequest.response.responseHeaders["JSESSIONID"][0]
+testRunner.testCase.setPropertyValue("JSessionId", header.toString())
+// Shiro need some time to replicate SESSION data frmo applicace.war to api.war
+// Use 1000ms for now, change it if necessary
+sleep(1000)</script></con:config>
+			</con:testStep><con:testStep type="restrequest" name="getAllNetworks" id="218e46c2-5f03-464c-bf98-336a1b93e809">
+				<con:settings/>
+				<con:config service="Authenticate" resourcePath="/v1.0/appliance/session/authenticate" methodName="Authenticate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+					<con:restRequest name="getAllNetworks" id="7c64c636-1e75-4332-a217-e87fbcc78487" mediaType="application/json" postQueryString="false">
+						<con:settings>
+							<con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="JSESSIONID" value="${#TestCase#JSessionId}" xmlns="http://eviware.com/soapui/config"/></con:setting>
+						</con:settings>
+						<con:endpoint>${#Project#protocol}://${#Project#ApplianceIP}:${#Project#servicePort}</con:endpoint>
+						<con:request/>
+						<con:originalUri>https://172.31.62.172/v1.0/api/networks
+						</con:originalUri>
+						<con:assertion type="Valid HTTP Status Codes" id="536e06d9-c9b1-4fff-9c80-373ce9513d3a" name="Valid HTTP Status Codes">
+							<con:configuration>
+								<codes>200</codes>
+							</con:configuration>
+						</con:assertion>
+						<con:credentials>
+							<con:authType>No Authorization</con:authType>
+						</con:credentials>
+						<con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+						<con:jmsPropertyConfig/>
+						<con:parameters>
+							<con:entry key="limit" value="10"/>
+							<con:entry key="offset" value="0"/>
+						</con:parameters>
+					</con:restRequest>
+				</con:config>
+			</con:testStep><con:testStep type="groovy" name="GetNetworkId" id="21871a47-745a-4e31-8368-13b0429f2335"><con:settings/><con:config><script>//
+// This script will harvest the first network ID obtained by calling the
+// getAllNetworks test step.
+//
+// Access this network ID using: ${#TestCase#networkId} in the request field.
+//
+import groovy.json.JsonSlurper
+
+def rawResponse = testRunner.testCase.getTestStepByName("getAllNetworks").getPropertyValue("response")
+slurpResponse = new JsonSlurper().parseText(rawResponse)
+
+testRunner.testCase.setPropertyValue("networkId", slurpResponse.data.id[0].toString())
+//log.info(slurpResponse.data[0])
+
+</script></con:config></con:testStep><con:testStep type="groovy" name="readGetIPv4AddressPoolEntries" id="cdc6c9c6-404c-4cc6-92bf-afb173aefe4b"><con:settings/><con:config><script>//
+// This script will read the .
+//
+// Access this network ID using: ${#TestCase#networkId} in the request field.
+//
+def groovyUtils = new com.eviware.soapui.support.GroovyUtils(context)
+
+def csvFilePath = "P:\\ICEE\\Temp\\Bruce\\getAllIPv4AddressPoolEntries.csv"
+context.fileReader = new BufferedReader(new FileReader(csvFilePath))
+
+firstLine = context.fileReader.readLine()
+
+String[] propData = firstLine.split(",")
+
+testRunner.testCase.setPropertyValue("state", propData[0])
+testRunner.testCase.setPropertyValue("limit", propData[1])
+
+//log.info(state)
+
+</script></con:config></con:testStep><con:testStep type="restrequest" name="getIPv4AddressPoolEntries" id="69164066-7422-4b62-adb0-0a47744a143e">
+				<con:settings/>
+				<con:config service="Authenticate" resourcePath="/v1.0/appliance/session/authenticate" methodName="Authenticate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+					<con:restRequest name="getIPv4AddressPoolEntries" id="a32f3f9b-2a13-4b6c-a37a-60ccf69ee600" mediaType="application/json" postQueryString="false">
+						<con:settings>
+							<con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="JSESSIONID" value="${#TestCase#JSessionId}" xmlns="http://eviware.com/soapui/config"/></con:setting>
+						</con:settings>
+						<con:endpoint>${#Project#protocol}://${#Project#ApplianceIP}:${#Project#servicePort}</con:endpoint>
+						<con:request/>
+						<con:originalUri>https://172.31.59.156/v1.0/api/networks/10/
+						</con:originalUri>
+						<con:assertion type="Valid HTTP Status Codes" id="bb845ccf-37b5-4e39-82f5-a54fca192931" name="Valid HTTP Status Codes">
+							<con:configuration><codes>200</codes></con:configuration>
+						</con:assertion>
+						<con:credentials>
+							<con:authType>No Authorization</con:authType>
+						</con:credentials>
+						<con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+						<con:jmsPropertyConfig/>
+						<con:parameters>
+  <con:entry key="limit" value="${#TestCase#limit}"/>
+  <con:entry key="networkId" value="${#TestCase#networkId}"/>
+  <con:entry key="state" value="${#TestCase#state}"/>
+</con:parameters>
+						<con:parameterOrder>
+							<con:entry>networkId</con:entry>
+						</con:parameterOrder>
+					</con:restRequest>
+				</con:config>
+			</con:testStep><con:properties><con:property><con:name>JSessionId</con:name><con:value>1f587b91-4b0c-498b-af88-a57f90c3f0a6</con:value></con:property><con:property><con:name>networkId</con:name><con:value>1</con:value></con:property><con:property><con:name>firstNetworkInfo</con:name><con:value>none</con:value></con:property><con:property><con:name>usageId</con:name><con:value>ALL</con:value></con:property><con:property><con:name>state</con:name><con:value>ALL</con:value></con:property><con:property><con:name>limit</con:name><con:value>10</con:value></con:property></con:properties></con:testCase><con:testCase id="6bf996be-c952-4def-95e4-651a95174759" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="stuff" searchProperties="true"><con:settings/><con:testStep type="restrequest" name="createNetwork" id="3e2fdc32-ba8b-4e2e-b4b1-f32a0d24a87d">
+				<con:settings/>
+				<con:config service="Authenticate" resourcePath="/v1.0/appliance/session/authenticate" methodName="Authenticate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+					<con:restRequest name="createNetwork" id="7c64c636-1e75-4332-a217-e87fbcc78487" mediaType="application/json" postQueryString="false">
+						<con:settings>
+							<con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="JSESSIONID" value="${#TestCase#JSessionId}" xmlns="http://eviware.com/soapui/config"/></con:setting>
+						</con:settings>
+						<con:encoding/><con:endpoint>${#Project#protocol}://${#Project#ApplianceIP}:${#Project#servicePort}</con:endpoint>
+						<con:request>{
+     "name": "Network1",
+     "description": "The First Network",
+     "type": "PUBLIC_LAN",
+     "vlanId": 90,
+     "static": true,
+     "staticIpv4NetworkConfiguration":
+     {
+          "gateway": "0.0.0.0",
+          "subnet": "255.255.255.0",
+          "dnsSuffix": "abc.com",
+          "primaryDNS": "172.162.0.1",
+          "secondaryDNS": "172.162.0.2",
+          "ipRange":
+          [
+               {
+                    "startingIp": "172.162.0.90",
+                    "endingIp": "172.162.0.92"
+               }
+          ]
+     }
+}</con:request>
+						<con:originalUri>https://172.31.62.172/v1.0/api/networks
+						</con:originalUri>
+						<con:assertion type="Valid HTTP Status Codes" id="9eaa3f2f-7af2-4f84-93e8-777c839f74d7" name="Valid HTTP Status Codes">
+							<con:configuration><codes>201
+</codes></con:configuration>
+						</con:assertion>
+						<con:credentials>
+							<con:authType>No Authorization</con:authType>
+						</con:credentials>
+						<con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+						<con:jmsPropertyConfig/>
+						<con:parameters/>
+					</con:restRequest>
+				</con:config>
+			</con:testStep><con:testStep type="restrequest" name="deleteNetwork" id="f03a1627-c9d5-43b1-a1ab-8872054048a5">
+				<con:settings/>
+				<con:config service="Authenticate" resourcePath="/v1.0/appliance/session/authenticate" methodName="Authenticate" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+					<con:restRequest name="deleteNetwork" id="76e35bc9-48a1-4666-967c-7a80e56e5754" mediaType="application/json" postQueryString="false">
+						<con:settings>
+							<con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="JSESSIONID" value="${#TestCase#JSessionId}" xmlns="http://eviware.com/soapui/config"/></con:setting>
+						</con:settings>
+						<con:endpoint>${#Project#protocol}://${#Project#ApplianceIP}:${#Project#servicePort}</con:endpoint>
+						<con:request/>
+						<con:originalUri>https://172.31.62.172/https%3A%2F%2F2</con:originalUri>
+						<con:assertion type="Valid HTTP Status Codes" id="6298bcdc-4845-45f5-b708-82d0138f78b1" name="Valid HTTP Status Codes">
+							<con:configuration>
+								<codes>204</codes>
+							</con:configuration>
+						</con:assertion>
+						<con:credentials>
+							<con:authType>No Authorization</con:authType>
+						</con:credentials>
+						<con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+						<con:jmsPropertyConfig/>
+						<con:parameters>
+							<entry key="networkId" value="${#Project#NetworkId}" xmlns="http://eviware.com/soapui/config"/>
+						</con:parameters>
+					</con:restRequest>
+				</con:config>
+			</con:testStep><con:properties/></con:testCase><con:properties/>
+		<con:properties/>
+	</con:testSuite>
+	<con:properties>
+		<con:property>
+			<con:name>ApplianceIP</con:name>
+			<con:value>100.64.23.53</con:value>
+		</con:property>
+		<con:property>
+			<con:name>networkId</con:name>
+			<con:value>2</con:value>
+		</con:property>
+		<con:property>
+			<con:name>state</con:name>
+			<con:value>ALL</con:value>
+		</con:property>
+		<con:property>
+			<con:name>offset</con:name>
+			<con:value>0</con:value>
+		</con:property>
+		<con:property>
+			<con:name>limit</con:name>
+			<con:value>10</con:value>
+		</con:property>
+		<con:property>
+			<con:name>ipAddress</con:name>
+			<con:value>172.31.19.3</con:value>
+		</con:property>
+		<con:property>
+			<con:name>usageId</con:name>
+			<con:value>1</con:value>
+		</con:property>
+	<con:property><con:name>protocol</con:name><con:value>http</con:value></con:property><con:property><con:name>servicePort</con:name><con:value>46016</con:value></con:property></con:properties>
+	<con:wssContainer/>
+	<con:oAuth2ProfileContainer/>
+	<con:sensitiveInformation/>
+</con:soapui-project>

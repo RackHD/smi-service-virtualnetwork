@@ -1,0 +1,73 @@
+security:
+  ignored:
+   - /**
+
+server:
+    port: 46016
+
+---
+
+spring:
+  profiles: default
+  application:
+    name: virtualnetwork
+  cloud:
+    bus:
+      enabled: false
+    consul:
+      enabled: false
+      config:
+        enabled: false
+  jpa:
+    database: POSTGRESQL
+    properties:
+      hibernate:
+        default_schema: virtualnetwork
+    show-sql: false
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+
+---
+
+spring:
+  profiles: consul
+  application:
+    name: virtualnetwork
+  cloud:
+    consul:
+      enabled: true
+      host: service-registry
+      port: 8500
+      discovery:
+        preferIpAddress: true
+      config:
+        prefix: config
+        profileSeparator: '::'
+        format: YAML
+        data-key: data
+        fail-fast: true
+        #retry:
+          #max-attempts: 60
+          #initial-interval: 10000
+
+---
+
+spring:
+  profiles: linked
+  cloud:
+    bus:
+      enabled: false
+    consul:
+      enabled: false
+      config:
+        enabled: false
+  jpa:
+    database: POSTGRESQL
+    properties:
+      hibernate:
+        default_schema: virtualnetwork
+    show-sql: false
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
