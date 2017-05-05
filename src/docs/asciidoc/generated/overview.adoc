@@ -1,0 +1,14 @@
+= VirtualNetwork Microservice
+
+== Overview
+Virtual Network and IPAM Microservice
+
+=== URI scheme
+Host: localhost:46016
+BasePath: /
+
+=== Tags
+
+* network-controller-impl: Network Controller Impl
+
+

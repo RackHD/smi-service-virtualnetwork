@@ -1,0 +1,9 @@
+/.apt_generated/
+/build/
+/bin/
+/.metadata/
+/.gradle/
+/.settings/
+/.classpath
+.metadata/
+RemoteSystemsTempFiles/

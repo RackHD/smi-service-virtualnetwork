@@ -1,0 +1,11 @@
+[Unit]
+Description=dell-virtualnetwork
+After=syslog.target
+
+[Service]
+User=devuser
+ExecStart=/opt/dell/smi/service-virtualnetwork/application.jar
+SuccessExitStatus=143
+
+[Install]
+WantedBy=multi-user.target

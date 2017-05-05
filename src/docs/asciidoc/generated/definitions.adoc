@@ -1,0 +1,179 @@
+== Definitions
+=== AssignIpPoolAddresses
+[options="header"]
+|===
+|Name|Description|Required|Schema|Default
+|ipAddresses||false|string array|
+|usageId||false|string|
+|===
+
+=== CreatedResponse
+[options="header"]
+|===
+|Name|Description|Required|Schema|Default
+|id||false|integer (int64)|
+|===
+
+=== File
+[options="header"]
+|===
+|Name|Description|Required|Schema|Default
+|absolute||false|boolean|
+|absoluteFile||false|file|
+|absolutePath||false|string|
+|canonicalFile||false|file|
+|canonicalPath||false|string|
+|directory||false|boolean|
+|file||false|boolean|
+|freeSpace||false|integer (int64)|
+|hidden||false|boolean|
+|name||false|string|
+|parent||false|string|
+|parentFile||false|file|
+|path||false|string|
+|totalSpace||false|integer (int64)|
+|usableSpace||false|integer (int64)|
+|===
+
+=== InputStreamResource
+[options="header"]
+|===
+|Name|Description|Required|Schema|Default
+|description||false|string|
+|file||false|file|
+|filename||false|string|
+|inputStream||false|<<InputStream>>|
+|open||false|boolean|
+|readable||false|boolean|
+|uri||false|<<URI>>|
+|url||false|<<URL>>|
+|===
+
+=== IpRange
+[options="header"]
+|===
+|Name|Description|Required|Schema|Default
+|endingIp||false|string|
+|id||false|integer (int64)|
+|ipAddressesFree||false|integer (int32)|
+|ipAddressesInUse||false|integer (int32)|
+|startingIp||false|string|
+|===
+
+=== Link
+[options="header"]
+|===
+|Name|Description|Required|Schema|Default
+|href||false|string|
+|rel||false|string|
+|title||false|string|
+|type||false|string|
+|===
+
+=== Network
+[options="header"]
+|===
+|Name|Description|Required|Schema|Default
+|createdBy||false|string|
+|createdTime||false|string|
+|description||false|string|
+|id||false|integer (int64)|
+|link||false|<<Link>>|
+|name||false|string|
+|static||false|boolean|
+|staticIpv4NetworkConfiguration||false|<<StaticIpv4NetworkConfiguration>>|
+|type||false|enum (PUBLIC_LAN, PRIVATE_LAN, STORAGE_ISCSI_SAN, STORAGE_FCOE_SAN, OOB_OR_INFRASTRUCTURE_MANAGEMENT, HYPERVISOR_MANAGEMENT, HYPERVISOR_MIGRATION, HYPERVISOR_CLUSTER_PRIVATE, PXE, FILESHARE, FIP_SNOOPING, HARDWARE_MANAGEMENT)|
+|updatedBy||false|string|
+|updatedTime||false|string|
+|vlanId||false|integer (int32)|
+|===
+
+=== PagedResult
+[options="header"]
+|===
+|Name|Description|Required|Schema|Default
+|data||false|object array|
+|pages||false|<<Pages>>|
+|pagination||false|<<Pagination>>|
+|===
+
+=== Pages
+[options="header"]
+|===
+|Name|Description|Required|Schema|Default
+|current||false|integer (int64)|
+|next||false|integer (int64)|
+|previous||false|integer (int64)|
+|total||false|integer (int64)|
+|===
+
+=== Pagination
+[options="header"]
+|===
+|Name|Description|Required|Schema|Default
+|limit||false|integer (int64)|
+|offset||false|integer (int64)|
+|total||false|integer (int64)|
+|===
+
+=== ReserveIpPoolAddressesRequest
+[options="header"]
+|===
+|Name|Description|Required|Schema|Default
+|quantityRequested||false|integer (int64)|
+|usageId||false|string|
+|===
+
+=== StaticIpv4NetworkConfiguration
+[options="header"]
+|===
+|Name|Description|Required|Schema|Default
+|dnsSuffix||false|string|
+|gateway||false|string|
+|ipAddress||false|string|
+|ipRange||false|<<IpRange>> array|
+|primaryDns||false|string|
+|secondaryDns||false|string|
+|subnet||false|string|
+|===
+
+=== URI
+[options="header"]
+|===
+|Name|Description|Required|Schema|Default
+|absolute||false|boolean|
+|authority||false|string|
+|fragment||false|string|
+|host||false|string|
+|opaque||false|boolean|
+|path||false|string|
+|port||false|integer (int32)|
+|query||false|string|
+|rawAuthority||false|string|
+|rawFragment||false|string|
+|rawPath||false|string|
+|rawQuery||false|string|
+|rawSchemeSpecificPart||false|string|
+|rawUserInfo||false|string|
+|scheme||false|string|
+|schemeSpecificPart||false|string|
+|userInfo||false|string|
+|===
+
+=== URL
+[options="header"]
+|===
+|Name|Description|Required|Schema|Default
+|authority||false|string|
+|content||false|object|
+|defaultPort||false|integer (int32)|
+|file||false|string|
+|host||false|string|
+|path||false|string|
+|port||false|integer (int32)|
+|protocol||false|string|
+|query||false|string|
+|ref||false|string|
+|userInfo||false|string|
+|===
+

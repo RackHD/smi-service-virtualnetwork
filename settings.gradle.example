@@ -1,0 +1,4 @@
+include ':virtualnetwork'
+project(':virtualnetwork').projectDir = new File(settingsDir, '../virtualnetwork')
+include ':commons-elm'
+project(':commons-elm').projectDir = new File(settingsDir, '../commons-elm')

@@ -1,0 +1,289 @@
+apply plugin: 'application'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'java'
+apply plugin: 'org.sonarqube'
+apply plugin: 'nebula.rpm'
+apply plugin: 'nebula.deb'
+apply plugin: "com.github.hierynomus.license"
+//apply plugin: 'nebula.lint'
+
+def _vendor = 'Dell'
+def _license = 'Apache License 2.0'
+def _group = ''
+def _url = 'http://support.dell.com'
+def _arch = 'x86_64'
+def _os = 'LINUX'
+def _release = 1
+
+sourceCompatibility = 1.8
+version = "${version}"
+group = 'com.dell.isg.smi'
+
+//check.dependsOn integrationTest
+//integrationTest.mustRunAfter test
+
+buildscript {
+	ext {
+		springVersion = '4.3.6.RELEASE'
+    	springBootVersion = '1.5.1.RELEASE'
+    	springCloudVersion = 'Camden.SR5'
+	}
+   repositories {
+    mavenLocal()
+	maven {
+		url "${artifactory_contextUrl}/libs-release"
+		url "https://plugins.gradle.org/m2/"
+
+	}
+  }
+  dependencies {
+  	classpath "io.spring.gradle:dependency-management-plugin:1.0.2.RELEASE"
+    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	classpath(group: 'com.netflix.nebula', name: 'gradle-ospackage-plugin', version: '4.4.0' )
+	classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.2.1"
+	classpath "gradle.plugin.nl.javadude.gradle.plugins:license-gradle-plugin:0.13.1"
+	//classpath 'com.netflix.nebula:gradle-lint-plugin:latest.release'
+  }
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
+
+//gradleLint {
+//  rules  = ['dependency-parentheses','overridden-dependency-version','duplicate-dependency-class', 'all-dependency','unused-dependency']
+//}
+
+sonarqube {
+    properties {
+        property "sonar.projectName", "APS :: Service :: Virtual Network"
+        property "sonar.projectKey", "${group}:virtualnetwork"
+    }
+}
+
+springBoot {
+    executable = true
+}
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'VirtualNetwork MicroService',
+                   'Implementation-Version': version
+    }
+    baseName = 'service-virtualnetwork'
+}
+
+repositories {
+	mavenLocal()
+	maven {
+		url "${artifactory_contextUrl}/libs-release"
+	}
+}
+
+sourceSets {
+    integrationTest {
+        java {
+            compileClasspath += main.output + test.output
+            runtimeClasspath += main.output + test.output
+            srcDir file('src/integration-test/java')
+        }
+        resources.srcDir file('src/integration-test/resources')
+    }
+}
+
+configurations {
+    integrationTestCompile.extendsFrom testCompile
+    integrationTestRuntime.extendsFrom testRuntime
+}
+
+dependencies {
+	//compile project(':virtualnetwork')
+    compile 'com.dell.isg.smi:commons-elm:1.0.36'
+    compile 'com.dell.isg.smi:virtualnetwork:1.0.79'
+
+	compile "org.springframework.boot:spring-boot-starter-web"
+	compile "org.springframework.boot:spring-boot-starter-tomcat"
+    compile "org.springframework.boot:spring-boot-starter-actuator"
+	compile "org.springframework.boot:spring-boot-starter-security"
+	compile "org.springframework.boot:spring-boot-starter-data-jpa"
+
+	compile "org.springframework.cloud:spring-cloud-starter-consul-all"
+
+	compile "org.springframework.security.oauth:spring-security-oauth2"
+
+    compile "org.apache.commons:commons-lang3:3.5"
+    compile "org.postgresql:postgresql:9.4.1212"
+
+    compile "io.springfox:springfox-swagger2:2.6.1"
+	compile "io.springfox:springfox-swagger-ui:2.6.1"
+
+	//test dependencies
+	testCompile("org.springframework.boot:spring-boot-starter-test")
+	testCompile group: 'io.github.robwin', name: 'swagger2markup', version: '0.2.2'
+	integrationTestCompile("org.springframework.boot:spring-boot-test-autoconfigure")
+	integrationTestCompile 'org.assertj:assertj-core:3.0.0'
+}
+
+tasks.withType(Test) {
+    reports.html.destination = file("${reporting.baseDir}/${name}")
+}
+
+license {
+        header rootProject.file('license-template')
+        includes(["**/*.java", "**/*.properties"])
+        strictCheck true
+        ignoreFailures true
+        ext.year = Calendar.getInstance().get(Calendar.YEAR)
+    	ext.name = 'DELL Inc.'
+}
+
+test {
+    systemProperties 'property': 'value'
+}
+
+
+uploadArchives {
+    repositories {
+       flatDir {
+           dirs 'repos'
+       }
+    }
+}
+
+task integrationTest(type: Test) {
+    testClassesDir = sourceSets.integrationTest.output.classesDir
+    classpath = sourceSets.integrationTest.runtimeClasspath
+    outputs.upToDateWhen { false }
+}
+
+task generateDockerRpm(type: Rpm){
+	destinationDir = project.file('build/distributions')
+	destinationDir.mkdirs()
+
+	vendor = _vendor
+	license = _license
+	group = _group
+	summary = 'Exported service-virtualnetwork image'
+	description = 'Places the docker container tar.gz into tmp the directory'
+	url = _url
+
+	packageName = 'dell-smi-docker-service-virtualnetwork'
+	release = _release
+	arch = _arch
+	os = _os
+
+    from fileTree( "tmp" ), {
+        include "**/*"
+        fileMode = 0755
+	    user = "root"
+	    addParentDirs = false
+	    into  '/tmp'
+    }
+
+	from fileTree( "pkg/docker" ), {
+        include "launch.sh"
+        fileMode = 0755
+	    //user = "root"
+	    //addParentDirs = false
+	    into  '/tmp'
+    }
+}
+
+task generateRpm(type: Rpm){
+	destinationDir = project.file('build/distributions')
+	destinationDir.mkdirs()
+
+	vendor = _vendor
+	license = _license
+	group = _group
+	summary = 'Installs the Dell Virtual Network spring boot application.'
+	description = 'The Dell Virtual Network spring boot application.'
+	url = _url
+
+	packageName = 'dell-smi-service-virtualnetwork'
+	release = _release
+	arch = _arch
+	os = _os
+
+	from fileTree( "build/libs" ), {
+        include "*.jar"
+        fileMode = 0755
+		user = "root"
+		addParentDirs = false
+	    into  '/opt/dell/smi/service-virtualnetwork'
+    }
+
+	from fileTree("./"), {
+        include "application.yml"
+        fileMode = 0755
+		//user = "root"
+		//addParentDirs = true
+	    into  '/opt/dell/smi/service-virtualnetwork'
+    }
+
+	from fileTree( "pkg" ), {
+        include "dell-virtualnetwork.service"
+		fileMode = 0777
+	    into  '/etc/systemd/system'
+    }
+	link('/etc/systemd/system/multi-user.target.wants/dell-virtualnetwork.service', '/etc/systemd/system/dell-virtualnetwork.service')
+}
+
+task generateDeb(type: Deb){
+	destinationDir = project.file('build/distributions')
+	destinationDir.mkdirs()
+
+	vendor = _vendor
+	license = _license
+	group = _group
+	summary = 'Installs the Dell Virtual Network spring boot application.'
+    description = 'The Dell Virtual Network spring boot application.'
+	url = _url
+
+	packageName = 'dell-smi-service-virtualnetwork'
+	release = _release
+	arch = 'all'
+	os = _os
+
+	from fileTree( "build/libs" ), {
+        include "*.jar"
+        fileMode = 0755
+		user = "root"
+		addParentDirs = true
+	    into  '/opt/dell/smi/service-virtualnetwork'
+    }
+
+	//from fileTree("./"), {
+    //    include "application.yml"
+    //   fileMode = 0755
+		//user = "root"
+		//addParentDirs = true
+	//    into  '/opt/dell/smi/service-virtualnetwork'
+    //}
+
+	from fileTree("./"), {
+        include "application.yml.secure"
+        fileMode = 0755
+		//user = "root"
+		//addParentDirs = true
+	    into  '/opt/dell/smi/service-virtualnetwork'
+		rename ('application.yml.secure', 'application.yml')
+    }
+
+
+
+	from fileTree( "pkg" ), {
+        include "dell-virtualnetwork.service"
+		fileMode = 0777
+	    into  '/etc/systemd/system'
+    }
+	link('/etc/systemd/system/multi-user.target.wants/dell-virtualnetwork.service', '/etc/systemd/system/dell-virtualnetwork.service')
+}
+
+task sourceJar(type: Jar) {
+    from sourceSets.main.allJava
+}
+
