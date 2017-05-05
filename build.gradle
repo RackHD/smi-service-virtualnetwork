@@ -59,8 +59,8 @@ dependencyManagement {
 
 sonarqube {
     properties {
-        property "sonar.projectName", "APS :: Service :: Virtual Network"
-        property "sonar.projectKey", "${group}:virtualnetwork"
+        property "sonar.projectName", "rackhd :: smi-service-virtualnetwork"
+        property "sonar.projectKey", "${group}:service-virtualnetwork"
     }
 }
 
