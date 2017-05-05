@@ -1,3 +1,5 @@
+[![Quality Gate](https://sonarqube.com/api/badges/gate?key=com.dell.isg.smi:service-virtualnetwork)](https://sonarqube.com/dashboard?id=com.dell.isg.smi%3Aservice-virtualnetwork)
+
 ### smi-service-virtualnetwork
 
 An IPAM micro-service that persists network/VLAN settings, and static IP reservation system.
