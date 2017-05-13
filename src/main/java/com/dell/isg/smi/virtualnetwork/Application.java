@@ -27,6 +27,9 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+/**
+ * The Class Application.
+ */
 @Configuration
 @EnableDiscoveryClient
 // @RefreshScope
@@ -36,11 +39,23 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @ComponentScan({ "com.dell.isg.smi.virtualnetwork" })
 @EnableJpaRepositories("com.dell.isg.smi.virtualnetwork.repository")
 public class Application extends WebMvcConfigurerAdapter {
+    
+    
+    /**
+     * The main method.
+     *
+     * @param args the arguments
+     */
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
 
 
+    /**
+     * Locale resolver.
+     *
+     * @return the locale resolver
+     */
     @Bean
     public LocaleResolver localeResolver() {
         SessionLocaleResolver slr = new SessionLocaleResolver();
@@ -49,6 +64,11 @@ public class Application extends WebMvcConfigurerAdapter {
     }
 
 
+    /**
+     * Locale change interceptor.
+     *
+     * @return the locale change interceptor
+     */
     @Bean
     public LocaleChangeInterceptor localeChangeInterceptor() {
         LocaleChangeInterceptor lci = new LocaleChangeInterceptor();
@@ -63,6 +83,11 @@ public class Application extends WebMvcConfigurerAdapter {
     }
 
 
+    /**
+     * Api.
+     *
+     * @return the docket
+     */
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2).groupName("virtualnetwork").apiInfo(apiInfo()).select().paths(regex("/api/1.0/.*")).build();

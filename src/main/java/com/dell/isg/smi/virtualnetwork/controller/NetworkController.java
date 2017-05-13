@@ -33,7 +33,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dell.isg.smi.commons.elm.model.CreatedResponse;
-import com.dell.isg.smi.commons.elm.model.PagedResult;
+import com.dell.isg.smi.commons.utilities.model.PagedResult;
 import com.dell.isg.smi.virtualnetwork.model.AssignIpPoolAddresses;
 import com.dell.isg.smi.virtualnetwork.model.IpRange;
 import com.dell.isg.smi.virtualnetwork.model.Network;
@@ -80,8 +80,8 @@ public interface NetworkController {
 
 
     /**
-     * Create Network
-     * 
+     * Create Network.
+     *
      * @param network (Network) the request body
      * @return (CreatedResponse) containing the serial ID of the created network
      */
@@ -95,14 +95,12 @@ public interface NetworkController {
     public abstract CreatedResponse createNetwork(@RequestBody Network network);
 
 
-    /*
-     * /** Get Network by ID
-     * 
-     * @param networkId (long) the network id
-     * 
-     * @return (Network) the network
+    /**
+     * Gets the network.
+     *
+     * @param networkId the network id
+     * @return the network
      */
-
     @ApiOperation(value = "Get Network (by ID)", nickname = "Get Network (by ID)", notes = "Returns the network information for the given " + PARAMETER_NETWORK_ID + " path variable", response = Network.class)
     @RequestMapping(method = RequestMethod.GET, path = PATH_URI_NETWORK_ID)
     @RolesAllowed({ ROLE_READ })
@@ -110,8 +108,8 @@ public interface NetworkController {
 
 
     /**
-     * Update Network
-     * 
+     * Update Network.
+     *
      * @param network (Network) the partial values of the network to update
      * @param networkId (long) the ID of the network to update
      */
@@ -123,8 +121,8 @@ public interface NetworkController {
 
 
     /**
-     * Delete Network
-     * 
+     * Delete Network.
+     *
      * @param networkId (long) the ID of the network to delete
      */
     @ApiOperation(value = "Delete Network", nickname = "Delete Network", notes = "Deletes the network for the given " + PARAMETER_NETWORK_ID + " path variable")
@@ -135,8 +133,9 @@ public interface NetworkController {
 
 
     /**
-     * Get all Networks
-     * 
+     * Get all Networks.
+     *
+     * @param name the name
      * @param offset (int) the starting offset of records to return, default value 0
      * @param limit (int) the limit of records to return, default value 10
      * @return (PagedResult) Paged list of networks
@@ -148,8 +147,8 @@ public interface NetworkController {
 
 
     /**
-     * Add IPv4 Range
-     * 
+     * Add IPv4 Range.
+     *
      * @param networkId (long) the ID of the network to add the range to
      * @param ipRange (IpRange) the request body
      * @return (CreatedResponse) containing the serial ID for the range
@@ -162,8 +161,8 @@ public interface NetworkController {
 
 
     /**
-     * Update IPv4 Range
-     * 
+     * Update IPv4 Range.
+     *
      * @param networkId (long) the serial identifier for the network
      * @param rangeId (long) the serial identifier for the static range
      * @param ipRange (IpRange) The request body
@@ -176,8 +175,8 @@ public interface NetworkController {
 
 
     /**
-     * Delete IPv4 Range
-     * 
+     * Delete IPv4 Range.
+     *
      * @param networkId (long) the ID of the network the range belongs to
      * @param rangeId (long) the ID of the range to delete
      */
@@ -191,8 +190,8 @@ public interface NetworkController {
     // IPV4 Address Pool APIs
 
     /**
-     * Get IPv4 Address Pool Entries
-     * 
+     * Get IPv4 Address Pool Entries.
+     *
      * @param networkId (long) the network id
      * @param state (String) One of these states: {ALL, AVAILABLE, RESERVED, ASSIGNED}
      * @param usageId (String) An identifier for the process or entity using the IP address
@@ -208,12 +207,12 @@ public interface NetworkController {
 
 
     /**
-     * Reserve IPv4 Address Pool Entries
-     * 
+     * Reserve IPv4 Address Pool Entries.
+     *
      * @param networkId (long) the network ID
      * @param reserveIpPoolAddressesRequest (ReserveIpPoolAddressesRequest) object containing the number of IP addresses to request, and the UsageId (string identifier) for the
      * process or entity reserving them.
-     * @return (Set<String>) Set of IP addresses reserved
+     * @return the sets a set of string IP addresses
      */
     @ApiOperation(value = "Reserve IPv4 Address Pool Entries", nickname = "Reserve IPv4 Address Pool Entries", notes = "Reserves IPv4 address pool entries for the given" + PARAMETER_NETWORK_ID + " path variable. The body is required to contain the number of IP's requested, and a UsageId (string identifier) for the process or entity reserving them.", response = Set.class)
     @RequestMapping(method = RequestMethod.POST, value = PATH_URI_IPADDRESSPOOLS)
@@ -223,8 +222,8 @@ public interface NetworkController {
 
 
     /**
-     * Assign IPv4 Address Pool Entries
-     * 
+     * Assign IPv4 Address Pool Entries.
+     *
      * @param networkId (long) the network ID
      * @param assignIpPoolAddresses (AssignIpPoolAddresses) object containing an array of the IP addresses to assign, and the UsageId (string identifier) for the process or entity
      * reserving them.
@@ -237,8 +236,8 @@ public interface NetworkController {
 
 
     /**
-     * Release All IPv4 Address Pool Entries (for a Usage ID on a given Network)
-     * 
+     * Release All IPv4 Address Pool Entries (for a Usage ID on a given Network).
+     *
      * @param networkId (long) the network ID
      * @param usageId (string) a string identifier for the process or entity for which they are reserved or assigned.
      */
@@ -250,8 +249,8 @@ public interface NetworkController {
 
 
     /**
-     * Release IPv4 Address Pool Entry
-     * 
+     * Release IPv4 Address Pool Entry.
+     *
      * @param networkId (long) the network ID
      * @param ipAddress (string) the IP address to release
      */
@@ -263,8 +262,8 @@ public interface NetworkController {
 
 
     /**
-     * Export IP Address Pool Data as Stream
-     * 
+     * Export IP Address Pool Data as Stream.
+     *
      * @param networkId (long) the network ID
      * @return Stream containing exported data
      */

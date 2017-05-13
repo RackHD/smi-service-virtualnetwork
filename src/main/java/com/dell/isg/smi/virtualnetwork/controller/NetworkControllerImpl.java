@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.dell.isg.smi.commons.elm.model.CreatedResponse;
-import com.dell.isg.smi.commons.elm.model.PagedResult;
+import com.dell.isg.smi.commons.utilities.model.PagedResult;
 import com.dell.isg.smi.virtualnetwork.entity.NetworkConfiguration;
 import com.dell.isg.smi.virtualnetwork.exception.BadRequestException;
 import com.dell.isg.smi.virtualnetwork.exception.ErrorCodeEnum;
@@ -35,6 +35,9 @@ import com.dell.isg.smi.virtualnetwork.model.ReserveIpPoolAddressesRequest;
 import com.dell.isg.smi.virtualnetwork.service.IpAddressPoolManager;
 import com.dell.isg.smi.virtualnetwork.service.NetworkConfigurationManager;
 
+/**
+ * The Class NetworkControllerImpl.
+ */
 @Component
 public class NetworkControllerImpl implements NetworkController {
 
@@ -45,6 +48,7 @@ public class NetworkControllerImpl implements NetworkController {
     public static final String CSV_SEPERATOR = ",";
     public static final String CSV_FILE_NAME_WITH_EXTENSION = "ip_addess_pool_data.csv";
     public static final String CONTENT_DISPOSITION_HEADER = "Content-Disposition";
+    public static final String VLAN_ID_ATTRIBUTE="vlanId";
 
     @Autowired
     private NetworkConfigurationManager networkConfigurationManager;
@@ -66,7 +70,7 @@ public class NetworkControllerImpl implements NetworkController {
             if (networkConfigurationManager.isVlandIdGreaterThan4000(vlanId)) {
                 BadRequestException badRequestException = new BadRequestException();
                 badRequestException.setErrorCode(ErrorCodeEnum.NETWORKCONF_VLAN_ID_CREATE_OR_UPDATE_NOT_ALLOWED);
-                badRequestException.addAttribute("vlanId");
+                badRequestException.addAttribute(VLAN_ID_ATTRIBUTE);
                 throw badRequestException;
             }
         }
@@ -108,7 +112,7 @@ public class NetworkControllerImpl implements NetworkController {
             if (networkConfigurationManager.isVlandIdGreaterThan4000(vlanId)) {
                 BadRequestException badRequestException = new BadRequestException();
                 badRequestException.setErrorCode(ErrorCodeEnum.NETWORKCONF_VLAN_ID_CREATE_OR_UPDATE_NOT_ALLOWED);
-                badRequestException.addAttribute("vlanId");
+                badRequestException.addAttribute(VLAN_ID_ATTRIBUTE);
                 throw badRequestException;
             }
         }
@@ -132,7 +136,7 @@ public class NetworkControllerImpl implements NetworkController {
         if (networkConfigurationManager.isVlandIdGreaterThan4000(vlanId)) {
             BadRequestException badRequestException = new BadRequestException();
             badRequestException.setErrorCode(ErrorCodeEnum.NETWORKCONF_VLAN_ID_DELETE_NOT_ALLOWED);
-            badRequestException.addAttribute("vlanId");
+            badRequestException.addAttribute(VLAN_ID_ATTRIBUTE);
             throw badRequestException;
         }
 
