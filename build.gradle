@@ -290,3 +290,31 @@ task sourceJar(type: Jar) {
     from sourceSets.main.allJava
 }
 
+eclipse {
+    classpath {
+       downloadSources=true
+    }
+}
+
+task dependencyZip(type: Zip) {
+	destinationDir = project.file('build/distributions')
+	destinationDir.mkdirs()
+	baseName = "smi-service-virutalnetwork-dependency-sources"
+	
+    def classpathFile = file('.classpath')
+    def cpXml = new XmlParser().parse(classpathFile)
+    def sourcePaths=[]
+    cpXml.classpathentry.each {
+        if('lib' == it.@kind ) {
+            if( it.@sourcepath == null ){
+               println 'missing source jar for:' + it.@path
+            }
+            else{
+              sourcePaths.add(it.@sourcepath)
+            }
+        }
+     }
+    
+    from sourcePaths
+}
+
