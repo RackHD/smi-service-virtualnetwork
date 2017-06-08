@@ -78,10 +78,10 @@ jar {
 }
 
 repositories {
-	mavenLocal()
 	maven {
 	    url "${artifactory_contextUrl}/${dependency_repo}"
 	}
+    mavenLocal()
 }
 
 sourceSets {
