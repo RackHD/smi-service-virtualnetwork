@@ -300,6 +300,7 @@ task dependencyZip(type: Zip) {
 	destinationDir = project.file('build/distributions')
 	destinationDir.mkdirs()
 	baseName = "smi-service-virutalnetwork-dependency-sources"
+	outputs.upToDateWhen { false }
 	
     def classpathFile = file('.classpath')
     def cpXml = new XmlParser().parse(classpathFile)
@@ -314,6 +315,9 @@ task dependencyZip(type: Zip) {
             }
         }
      }
+     
+     def arrayLength = sourcePaths.size()
+     println 'sourcePaths length is:' + arrayLength
     
     from sourcePaths
 }
