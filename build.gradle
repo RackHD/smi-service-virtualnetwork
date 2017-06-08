@@ -15,9 +15,11 @@ def _url = 'http://support.dell.com'
 def _arch = 'x86_64'
 def _os = 'LINUX'
 def _release = 1
+def _sourcePaths=[]
 
 sourceCompatibility = 1.8
 version = "${version}"
+dockerTag = "${dockerTag}"
 group = 'com.dell.isg.smi'
 
 //check.dependsOn integrationTest
@@ -77,10 +79,10 @@ jar {
 }
 
 repositories {
-	mavenLocal()
 	maven {
 	    url "${artifactory_contextUrl}/${dependency_repo}"
 	}
+    mavenLocal()
 }
 
 sourceSets {
@@ -288,5 +290,52 @@ task generateDeb(type: Deb){
 
 task sourceJar(type: Jar) {
     from sourceSets.main.allJava
+}
+
+eclipse {
+    project{
+    	buildCommand 'org.eclipse.buildship.core.gradleprojectbuilder'
+    		
+		// assign natures in a groovy fashion:
+		natures = ['org.eclipse.buildship.core.gradleprojectnature']
+    }
+    
+    classpath {
+       downloadSources=true
+    }
+}
+
+
+task buildSourcePathsArray(dependsOn: 'eclipseClasspath' ){
+	doLast{
+		def classpathFile = file('.classpath')
+		if( classpathFile.exists() ) {
+			def cpXml = new XmlParser().parse(classpathFile)
+			cpXml.classpathentry.each {
+				if('lib' == it.@kind ) {
+					if( it.@sourcepath == null ){
+						println 'missing source jar for:' + it.@path
+					}
+					else{
+					 	_sourcePaths.add(it.@sourcepath)
+					}
+				}
+			}
+		}
+		 
+		def arrayLength = _sourcePaths.size()
+		println 'sourcePaths length is:' + arrayLength
+	}
+}
+
+
+task dependencySourcesZip(type: Zip, dependsOn: 'buildSourcePathsArray' ) {
+	destinationDir = project.file('build/distributions')
+	destinationDir.mkdirs()
+	baseName = "smi-service-virtualnetwork-dependency-sources"
+	version = "${dockerTag}"
+	outputs.upToDateWhen { false }
+ 
+    from _sourcePaths
 }
 
