@@ -19,6 +19,7 @@ def _sourcePaths=[]
 
 sourceCompatibility = 1.8
 version = "${version}"
+dockerTag = "${dockerTag}"
 group = 'com.dell.isg.smi'
 
 //check.dependsOn integrationTest
@@ -332,6 +333,7 @@ task dependencySourcesZip(type: Zip, dependsOn: 'buildSourcePathsArray' ) {
 	destinationDir = project.file('build/distributions')
 	destinationDir.mkdirs()
 	baseName = "smi-service-virutalnetwork-dependency-sources"
+	version = "${dockerTag}"
 	outputs.upToDateWhen { false }
  
     from _sourcePaths
