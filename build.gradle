@@ -332,7 +332,7 @@ task buildSourcePathsArray(dependsOn: 'eclipseClasspath' ){
 task dependencySourcesZip(type: Zip, dependsOn: 'buildSourcePathsArray' ) {
 	destinationDir = project.file('build/distributions')
 	destinationDir.mkdirs()
-	baseName = "smi-service-virutalnetwork-dependency-sources"
+	baseName = "smi-service-virtualnetwork-dependency-sources"
 	version = "${dockerTag}"
 	outputs.upToDateWhen { false }
  
