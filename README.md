@@ -4,6 +4,8 @@
 
 An IPAM micro-service that persists network/VLAN settings, and static IP reservation system.
 
+A docker container for this service is avalable at:  https://hub.docker.com/r/rackhd/virtualnetwork/
+
 ### Purpose
 The virtualnetwork (IPAM) Docker container is a spring-boot micro-service that allows a user to define one or more logical virtual networks with associated IPV4 network definitions for later use.  It performs basic validation and persists network/VLAN IP configuration data, to include any optional Static IP ranges.  The entered data is persisted in a postgres database (linked or attached via settings).  
 
@@ -11,13 +13,11 @@ Also provided is API's  for reserving and assigning Static IP addresses that may
 
 To optionally secure the REST endpoints, the micro-service comes compiled with spring-security-oauth2 libraries, and endpoints have pre-defined roles annotated.
 
-The micro-service also serves as a reference implementation for a stand-alone virtualnetwork JAR library (smi-lib-virtualnetwork) that can be used independently when writing your own implementation. 
+The micro-service also serves as a reference implementation for a stand-alone virtualnetwork JAR library (https://github.com/RackHD/smi-lib-virtualnetwork) that can be used independently when writing your own implementation. 
 
 ---
 
 ### How to Launch
-
-Under Construction. Docker container not yet published on DockerHub..... 
 
 ##### Option 1. Linking to a postgres database:
 1. Start the postgres database first
@@ -80,7 +80,7 @@ services:
     - postgresql
     network_mode: "host"
     ports:
-    - 46015:46015
+    - 46016:46016
     extra_hosts:
     - "service-registry:<<replace with consul ip address>>"
     volumes:
@@ -212,6 +212,16 @@ Step 5.  The user makes another call to the micro-service to ASSIGN IP address B
 Step 6. The user determines that he does not need IP address C.  A call is made to the micro-service to RELEASE IP address C from network X.  Alternatively, a call can be made by an external process to release any reserved IP addresses that are not assigned within a given expiration period.
 
 ---
+### Licensing
+This docker microservice is available under the [Apache 2.0 License](http://www.apache.org/licenses/LICENSE-2.0.txt). 
+
+The microservice makes use of some dependent libraries that may be covered other other licenses, including the Hibernate Core library which is licensed under the [LGPL 2.1 license](https://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt)..
+
+Source code for this microservice is available in repositories at https://github.com/RackHD.  
+
+In order to comply with the requirements of applicable licenses, the source for dependent libraries used by this microservice is available for download at:  https://bintray.com/rackhd/binary/download_file?file_path=smi-service-virtualnetwork-dependency-sources-devel.zip    
+
+Additionally the binary and source jars for all dependent libraries are available for download on Maven Central.
 
 ### Support
 Slack Channel: codecommunity.slack.com
