@@ -6,6 +6,8 @@ An IPAM micro-service that persists network/VLAN settings, and static IP reserva
 
 A docker container for this service is avalable at:  https://hub.docker.com/r/rackhd/virtualnetwork/
 
+Copyright © 2017 Dell Inc. or its subsidiaries.  All Rights Reserved. 
+
 ### Purpose
 The virtualnetwork (IPAM) Docker container is a spring-boot micro-service that allows a user to define one or more logical virtual networks with associated IPV4 network definitions for later use.  It performs basic validation and persists network/VLAN IP configuration data, to include any optional Static IP ranges.  The entered data is persisted in a postgres database (linked or attached via settings).  
 
