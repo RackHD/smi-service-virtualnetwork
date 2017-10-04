@@ -7,6 +7,7 @@ import static springfox.documentation.builders.PathSelectors.regex;
 
 import java.util.Locale;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
@@ -22,7 +23,6 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 import springfox.documentation.builders.ApiInfoBuilder;
-import springfox.documentation.service.ApiInfo;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
@@ -32,7 +32,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  */
 @Configuration
 @EnableDiscoveryClient
-// @RefreshScope
 @EnableSwagger2
 @EnableAutoConfiguration
 @EnableOAuth2Sso
@@ -50,6 +49,8 @@ public class Application extends WebMvcConfigurerAdapter {
         SpringApplication.run(Application.class, args);
     }
 
+	@Autowired
+	private BuildInfo buildInfo;
 
     /**
      * Locale resolver.
@@ -90,11 +91,7 @@ public class Application extends WebMvcConfigurerAdapter {
      */
     @Bean
     public Docket api() {
-        return new Docket(DocumentationType.SWAGGER_2).groupName("virtualnetwork").apiInfo(apiInfo()).select().paths(regex("/api/1.0/.*")).build();
+        return new Docket(DocumentationType.SWAGGER_2).groupName("virtualnetwork").apiInfo(new ApiInfoBuilder().title("SMI Microservice - IPAM and Virtual Network").version(buildInfo.toString()).build()).select().paths(regex("/api/1.0/.*")).build();
     }
 
-
-    private ApiInfo apiInfo() {
-        return new ApiInfoBuilder().title("Virtual Network and IPAM Microservice").description("API for the Virtual Network and IPAM Microservice.").version("1.0").build();
-    }
 }
