@@ -43,7 +43,7 @@ buildscript {
   	classpath "io.spring.gradle:dependency-management-plugin:1.0.2.RELEASE"
     classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
 	classpath(group: 'com.netflix.nebula', name: 'gradle-ospackage-plugin', version: '4.4.0' )
-	classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.2.1"
+	classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.6.1"
 	classpath "gradle.plugin.nl.javadude.gradle.plugins:license-gradle-plugin:0.13.1"
 	//classpath 'com.netflix.nebula:gradle-lint-plugin:latest.release'
   }
@@ -79,10 +79,12 @@ jar {
 }
 
 repositories {
-	maven {
-	    url "${artifactory_contextUrl}/${dependency_repo}"
-	}
     mavenLocal()
+    maven {
+        url "https://oss.sonatype.org/content/repositories/snapshots"
+        url "https://oss.sonatype.org/content/repositories/releases"
+        url "https://repo.maven.apache.org/maven2"
+    }
 }
 
 sourceSets {
