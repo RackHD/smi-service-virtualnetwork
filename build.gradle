@@ -105,9 +105,9 @@ configurations {
 
 dependencies {
 	//compile project(':virtualnetwork')
-	compile 'com.dell.isg.smi:commons-elm:1.0.76'
-	compile 'com.dell.isg.smi:commons-utilities:1.0.26'
-    compile 'com.dell.isg.smi:virtualnetwork:1.0.89'
+	compile 'com.dell.isg.smi:commons-elm:'+commonsElmVersion
+	compile 'com.dell.isg.smi:commons-utilities:'+commonsUilitiesVersion
+    compile 'com.dell.isg.smi:virtualnetwork:'+virtualnetworkVersion
 
 	compile "org.springframework.boot:spring-boot-starter-web"
 	compile "org.springframework.boot:spring-boot-starter-tomcat"
