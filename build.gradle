@@ -1,3 +1,5 @@
+// Copyright © 2018 DELL Inc. or its subsidiaries.  All Rights Reserved.
+
 apply plugin: 'java'
 apply plugin: 'application'
 apply plugin: 'eclipse'
